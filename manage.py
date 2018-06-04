@@ -15,7 +15,7 @@ def keys(dist):#функция получения ключей словаря
 def list():#функция получения готового словаря
 	source = json.loads(requests.get("https://job.firstvds.ru/spares.json").content.decode("latin1"))
 	edit = json.loads(requests.get("https://job.firstvds.ru/alternatives.json").content.decode("latin1"))['alternatives']
-	edit["PC4 16G"][0] = "RAM 16GB PC4-2400 REG"#Исправление опечатки в "словарике с взаимозаменяемостью"
+	edit["PC4 16G"][0] = "RAM 16GB PC4-2400 REG"#Исправление опечаткок в словарике с взаимозаменяемостью
 	edit["PC4 16G"][1] = "RAM 16Gb PC4-2133 REG"	
 	exit = {}
 	keys_source = keys(source)
