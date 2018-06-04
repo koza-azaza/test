@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask
-import json, requests #импорт библиотек
+import json, requests
 
 def keys(dist):#функция получения ключей словаря
 	v = str(dist.keys())
@@ -15,7 +15,7 @@ def keys(dist):#функция получения ключей словаря
 def list():#функция получения готового словаря
 	source = json.loads(requests.get("https://job.firstvds.ru/spares.json").content.decode("latin1"))
 	edit = json.loads(requests.get("https://job.firstvds.ru/alternatives.json").content.decode("latin1"))['alternatives']
-	edit["PC4 16G"][0] = "RAM 16GB PC4-2400 REG"
+	edit["PC4 16G"][0] = "RAM 16GB PC4-2400 REG"#Исправление опечатки в "словарике с взаимозаменяемостью"
 	edit["PC4 16G"][1] = "RAM 16Gb PC4-2133 REG"	
 	exit = {}
 	keys_source = keys(source)
@@ -96,9 +96,6 @@ def mustbe():#вывод только красных
 			out += "<br>  arrive : " + str(d["arrive"])
 			out += '<br>  count  : ' + str(d["count"])
 			out += "</p>"
-	#o = keys(exit)
-	#for i in o:
-	#	out += "<br>" + str(i) + str(exit[i])
 	return str(out)
 
 @app.route("/json")
