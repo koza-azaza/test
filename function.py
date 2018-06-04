@@ -49,9 +49,10 @@ def test(sql):
 		return exit.lower()
 
 def getUsername(tablename):
+	#изначально запуск проводился от root'a
 	db = MySQLdb.connect(host="localhost", user="ReadOnlyUser", passwd="ROUpassword", db="contacts", charset='utf8')
 	cur = db.cursor()
-	sql ='''select %s from user'''%(test(tablename))
+	sql ='''select %s from user'''%(test(tablename))#добавлен тест строки на sql-инъекцию
 	cur.execute(sql)
 	j = cur.fetchall()
 	out = json.dumps(j[0][0],ensure_ascii=False,indent=2,sort_keys=True)
